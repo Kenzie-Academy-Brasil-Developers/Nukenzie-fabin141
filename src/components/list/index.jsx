@@ -15,7 +15,6 @@ function ListInput({list, setList, filter,setFilter, setValue , toast}){
         filtro ? setFilter(list.filter((elem) => elem.type === filtro)) : setFilter(list)
     }
 
-    useEffect(() => {fillter()},[list])
 
     return (
         <>

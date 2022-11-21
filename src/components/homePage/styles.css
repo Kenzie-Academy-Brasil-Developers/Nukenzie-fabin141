@@ -55,8 +55,11 @@
   height: 50px;
   color: white;
   background-color: #FD377E;
-  border: none;
-  font-size: 1rem;
+  border: 2px solid #FD377E;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  transition: 0.45s;
+
 }
 
 .button-init:hover{
@@ -77,6 +80,7 @@
 @media only screen and (max-width: 430px) {    
   .conteiner{
       justify-content: center;
+      margin: 0 auto;
   }
 
   .title{
