@@ -1,10 +1,9 @@
-import { useEffect } from "react"
 import iconLixo from "../../assets/iconLixo.png"
 import iconVazio from "../../assets/NoCard.png"
 import "./styles.css"
 
-function ListInput({list, setList, filter,setFilter, setValue , toast}){
-    
+export function ListInput({list, setList, filter,setFilter, setValue , toast}){
+
     function removeItem(item){
         const newList = list.filter((elem) => elem.id !== item.id)
         setList(newList)
@@ -54,5 +53,3 @@ function ListInput({list, setList, filter,setFilter, setValue , toast}){
         </>
     )
 }
-
-export default ListInput

@@ -57,8 +57,7 @@
   background-color: #FD377E;
   border: 2px solid #FD377E;
   border-radius: 8px;
-  font-size: 1.25rem;
-  transition: 0.45s;
+  font-size: 1rem;
 
 }
 
@@ -79,8 +78,13 @@
 
 @media only screen and (max-width: 430px) {    
   .conteiner{
+    align-items: center;
+    align-content: center;
+    justify-items: center;
       justify-content: center;
       margin: 0 auto;
+      
+      padding-left: -100px;
   }
 
   .title{
@@ -91,6 +95,10 @@
       padding-left: 0px;
 
   }
+  .button-init{
+    height: 50px;
+    width: 100px;
+  }
   
   .subTitle{
       font-size: 1rem;
@@ -100,6 +108,8 @@
   }
 
   .conteiner-Title img{
-      width: 60%;
+      width: 100%;
+      margin: 0 auto;
+      
   }
 }

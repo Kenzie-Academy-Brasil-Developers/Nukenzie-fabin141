@@ -1,6 +1,6 @@
 import "./styles.css"
 
-function ValorTotal({list}){
+export function ValorTotal({list}){
     const valorTotla = list.reduce((acc, elem) => acc + Number(elem.value), 0)
     return(
         <ul className="conteiner-value">
@@ -10,4 +10,3 @@ function ValorTotal({list}){
     )
 }
 
-export default ValorTotal

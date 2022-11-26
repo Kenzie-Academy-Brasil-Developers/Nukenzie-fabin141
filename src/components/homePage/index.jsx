@@ -6,7 +6,7 @@ import "./styles.css"
 function HomePage({setIsLogin}){
     return(
         <div className="conteiner">
-            <div className="conteiner-Title animate__zoomIn">
+            <div className="conteiner-Title">
                 <img src={Kenzie} alt="logo" />
                 <h1 className="title">Centralize o controle das suas finanças</h1>
                 <span className="subTitle">de forma rápida e segura</span>
@@ -15,7 +15,7 @@ function HomePage({setIsLogin}){
                     }>Iniciar</button>
             </div>
             <div className="conteiner-Img">
-                <img src={fundo1} alt="fundo" className="background animate__backInRight"/>
+                <img src={fundo1} alt="fundo" className="background"/>
             </div>
         </div>
     )
