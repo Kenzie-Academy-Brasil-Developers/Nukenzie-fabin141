@@ -2,7 +2,7 @@ import iconLixo from "../../assets/iconLixo.png"
 import iconVazio from "../../assets/NoCard.png"
 import "./styles.css"
 
-export function ListInput({list, setList, filter,setFilter, setValue , toast}){
+export function ListInput({list, setList, filter,setFilter, setValue }){
 
     function removeItem(item){
         const newList = list.filter((elem) => elem.id !== item.id)
@@ -36,9 +36,7 @@ export function ListInput({list, setList, filter,setFilter, setValue , toast}){
                                         <p>{elem.type}</p>
                                     </div>
                                     <p>{`R$ ${elem.value},00`}</p>
-                                    <button onClick={() => {
-                                        removeItem(elem) 
-                                        toast.success("Transação removida com sucesso")}}><img src={iconLixo} alt="lixo"/></button>
+                                    <button onClick={removeItem}><img src={iconLixo} alt="lixo"/></button>
                                 </li>)})
 
                         :
