@@ -4,17 +4,17 @@ import "./styles.css"
 export function Form({setList, setFilter, list}){
    
     // const [name, setName] = useState('');
-    // function handleSubmit(event){
-    //     event.preventDefault();
+    function handleSubmit(event){
+        event.preventDefault();
 
-    //         const user = {
-    //             name :'',
-    //             tipo: '',
-    //             value: 0,
-    //         }
+            const user = {
+                name :'',
+                tipo: '',
+                value: 0,
+            }
     
            
-    //     }
+        }
         return (
             <div className="conteiner-form">
             <form className="form" >
