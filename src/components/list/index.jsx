@@ -1,53 +1,38 @@
-import iconLixo from "../../assets/iconLixo.png"
-import iconVazio from "../../assets/NoCard.png"
-import "./styles.css"
+import trash from '../../assets/trash.png'
+import './style.css'
 
-export function ListInput({list, setList, filter,setFilter, setValue }){
+export default function List({transactionList, setTransactionList, setTotalValue}){
+    const deleteIten = (i) => {
+        const newList = transactionList.filter((element, index) => i !== index)
 
-    function removeItem(item){
-        const newList = list.filter((elem) => elem.id !== item.id)
-        setList(newList)
+        console.log(newList)
+        
+        let sum = newList.reduce((acc, element) => {
+            return element.type === 'entrada' ? acc + element.value : acc - element.value
+        }, 0)
+
+        setTotalValue(sum)
+
+        setTransactionList(newList)
     }
-
-
-    function fillter(filtro){
-        filtro ? setFilter(list.filter((elem) => elem.type === filtro)) : setFilter(list)
-    }
-
-
-    return (
-        <>
-            <div className="conteiner-resume">
-                <h2>Resumo financeiro</h2>
-                <div className="conteiner-filter">
-                    <button onClick={() => fillter()}>Todos</button>
-                    <button onClick={() => fillter("Entrada")}>Entradas</button>
-                    <button onClick={() => fillter("Despesa")}>Despesas</button>
-                </div>
-            </div>
-            <ul className="conteiner-itens">
-                {
-                    filter.length > 0 
-                        ? 
-                            filter.map((elem) => {
-                                return (<li key={elem.id} className="item">
-                                    <div className="conteiner-description">
-                                        <p className="description">{elem.description}</p>
-                                        <p>{elem.type}</p>
-                                    </div>
-                                    <p>{`R$ ${elem.value},00`}</p>
-                                    <button onClick={removeItem}><img src={iconLixo} alt="lixo"/></button>
-                                </li>)})
-
-                        :
-
-                            (<li>
-                                <p className="noItem">Você ainda não possui nenhum lançamento</p>
-                                <img src={iconVazio} alt="" className="img-noitem"/>
-                            </li>)
-                }
-                
-            </ul>
-        </>
+    
+    return(
+        <ul className='transaction__list'>
+            {transactionList.map((element, index) => {
+                return (
+                    <li key={index} className={'transaction ' + element.hide}>
+                        <div className={ element.type === 'entrada' ? 'deposit' : 'debit'}></div>
+                        <div className='transaction--description'>
+                            <h3 className='title3'>{element.description}</h3>
+                            <span className='body'>{element.type}</span>
+                        </div>
+                        <div className='transaction--value'>
+                            <p className='body'>R${element.value}</p>
+                            <button className='button button__delete' onClick={() => deleteIten(index)}><img src={trash} alt='trash' ></img></button>
+                        </div>
+                    </li>
+                )
+            })}
+        </ul>
     )
 }

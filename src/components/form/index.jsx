@@ -1,46 +1,70 @@
+import TotalMoney from "../totalMoney"
+import Module from "../Module"
 import { useState } from "react"
-import "./styles.css"
+import "./style.css"
 
-export function Form({setList, setFilter, list}){
-   
-    // const [name, setName] = useState('');
-    function handleSubmit(event){
-        event.preventDefault();
+export default function Form ({setTransactionList, transactionList, totalValue, setTotalValue}){
+    const [transaction, setTransaction] = useState(true)
 
-            const user = {
-                name :'',
-                tipo: '',
-                value: 0,
+    function newTransaction (input){
+        if (parseFloat(input[1].value)) {
+            const inputValues = {
+                description: input[0].value,
+                value: parseFloat(input[1].value),
+                type: input[2].value,
+                hide: ''
             }
+            
+            const sum = totalValue + (inputValues.type === 'entrada' ? inputValues.value : - inputValues.value )
+            
+            setTotalValue(sum)
     
-           
+            setTransactionList([...transactionList, inputValues])
+        } else {
+            setTransaction(false)
         }
-        return (
-            <div className="conteiner-form">
-            <form className="form" >
-                <label htmlFor="description" className="label-description">Descrição</label>
-                <input type="text" className="input-description"
-                placeholder="Digite aqui sua descrição" name="description"
-                />
-
-                <span>Ex: Compra de roupas</span>
-                <div className="conteiner-input-type">
-                    <div className="div-input">
-                        <label htmlFor="value">Valor</label>
-                        <input type="number" placeholder="1" name="value"/>
+    }
+    
+    return(
+        <>
+            <form onSubmit={(event) => {
+                event.preventDefault()
+                newTransaction(event.target)
+            }}
+                className='form'>
+                <label className="caption">Descrição</label>
+                <input 
+                    type='text'
+                    placeholder="Digite aqui sua descrição"
+                    className="form--input"
+                    required
+                ></input>
+                <span className="headline">Ex: Compra de roupas</span>
+                <div className="form--description">
+                    <div>
+                        <label className="caption">Valor</label>
+                        <input
+                            type='text'
+                            placeholder="0.00"
+                            className="form--input form--input__small"
+                            required
+                        ></input>
+                        <span className="headline form--priceSymbol">R$</span>
                     </div>
-                    <div className="div-input select">
-                        <label htmlFor="type">Tipo de valor</label>
-                        <select name="type">
-                            <option value="" className="select-init">Selecione um tipo</option>
-                            <option value="Entrada">Entrada</option>
-                            <option value="Despesa">Despesa</option>
+                    <div>
+                    <label className="caption">Tipo de transação</label>
+                        <select className="form--input form--input__small" required>
+                            <option value="">--</option>
+                            <option value="entrada">Entrada</option>
+                            <option value="despesa">Despesa</option>
                         </select>
                     </div>
                 </div>
-                <button type='submit'>Inserir Valor</button>
+                <button type="submit" className="button button__pink button__large">Inserir valor</button>
             </form>
-        </div>
+            {transactionList.length ? <TotalMoney totalValue={totalValue}/> : <></>}
+            {transaction === false ? <Module setTransaction={setTransaction}/>  : <></>}
+        </>
+        
     )
 }
-

@@ -1,25 +1,21 @@
 import { useState } from 'react';
+import Index from './components/Inicial';
+import Home from './components/Home';
 import './App.css';
-import  HomePage from "./components/homePage"
-import MainPage from "./components/mainPage"
+import './reset.css'
+import './base.css'
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false)
+  const [login, setLogin] = useState(false)
 
-  
   return (
-    <div>
-      <div>
-        
-        {isLogin ? (
-        <div>
-          <MainPage setIsLogin={setIsLogin}/>
-        </div>)
-        :
-        (<HomePage setIsLogin={setIsLogin} />)}
-    
-      </div>
-    </div>
+    <>
+      {login ? (
+        <Home setlogin={setLogin}/>
+      ):(
+        <Index setlogin={setLogin}/>
+      )}
+    </>
   );
 }
 
